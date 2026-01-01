@@ -200,15 +200,39 @@ quotes.forEach(quote => {
 });
 
 // Mobile menu toggle (basic implementation)
-const navLogo = document.querySelector('.nav-logo');
-if (navLogo) {
-    navLogo.addEventListener('dblclick', () => {
+// Note: For production use, add a proper hamburger button in the HTML
+const createMobileMenuToggle = () => {
+    if (window.innerWidth <= 768) {
+        const navContainer = document.querySelector('.nav-container');
         const navMenu = document.querySelector('.nav-menu');
-        if (window.innerWidth <= 768) {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        
+        // Add mobile menu button if it doesn't exist
+        let menuButton = document.querySelector('.mobile-menu-btn');
+        if (!menuButton) {
+            menuButton = document.createElement('button');
+            menuButton.className = 'mobile-menu-btn';
+            menuButton.innerHTML = '☰';
+            menuButton.style.cssText = `
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--primary-color);
+            `;
+            menuButton.setAttribute('aria-label', 'Toggle navigation menu');
+            menuButton.addEventListener('click', () => {
+                const isVisible = navMenu.style.display === 'flex';
+                navMenu.style.display = isVisible ? 'none' : 'flex';
+                menuButton.setAttribute('aria-expanded', !isVisible);
+            });
+            navContainer.appendChild(menuButton);
         }
-    });
-}
+    }
+};
+
+window.addEventListener('resize', createMobileMenuToggle);
+createMobileMenuToggle();
 
 // Add smooth transitions to all links
 document.querySelectorAll('a').forEach(link => {
@@ -220,11 +244,8 @@ console.log('%c📖 Welcome to My Story!', 'font-size: 20px; font-weight: bold; 
 console.log('%cEvery great story deserves to be told in code.', 'font-size: 14px; font-style: italic; color: #764ba2;');
 console.log('%cThanks for inspecting! 🕵️', 'font-size: 12px; color: #666;');
 
-// Add loading animation
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
+// Add loading animation - ensure smooth fade-in
+window.addEventListener('DOMContentLoaded', () => {
+    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.opacity = '1';
 });
