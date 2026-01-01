@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, User, Code2, FolderOpen, Mail } from "lucide-react";
+import { Menu, X, User, Code2, FolderOpen, Mail, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/context/ModeContext";
 
 const navLinks = [
   { label: "About Me", href: "#about", icon: User },
@@ -14,6 +15,7 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [lastScrollY, setLastScrollY] = useState(0);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,15 +101,43 @@ export const Navigation = () => {
                 </button>
               );
             })}
+            
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="ml-4 p-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
+              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-5 w-5 text-gray-700" />
+              ) : (
+                <Sun className="h-5 w-5 text-yellow-400" />
+              )}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground p-2 rounded-full hover:bg-muted/50 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
+              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-5 w-5 text-gray-700" />
+              ) : (
+                <Sun className="h-5 w-5 text-yellow-400" />
+              )}
+            </button>
+            <button
+              className="text-foreground p-2 rounded-full hover:bg-muted/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 

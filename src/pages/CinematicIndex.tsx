@@ -10,7 +10,7 @@ import { CinematicResume } from "@/components/cinematic/CinematicResume";
 import { FinalAct } from "@/components/cinematic/FinalAct";
 import { Navigation } from "@/components/Navigation";
 
-const Index = () => {
+const CinematicIndex = () => {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
       <Navigation />
@@ -31,4 +31,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default CinematicIndex;

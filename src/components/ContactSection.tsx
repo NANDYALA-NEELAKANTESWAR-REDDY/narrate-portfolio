@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "neelakanta875@gmail.com", href: "mailto:neelakanta875@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
+  { icon: Phone, label: "Phone", value: "+91 9876543210", href: "tel:+919876543210" },
   { icon: MapPin, label: "Location", value: "Ananthapur , ATP", href: "#" },
 ];
 
