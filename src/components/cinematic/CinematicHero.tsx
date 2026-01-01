@@ -173,7 +173,42 @@ export const CinematicHero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
           {/* Left Side - Circle Image with Interactive Effects */}
-          <InteractiveProfileImage />
+          <div className="flex flex-col items-center gap-6">
+            {/* Greeting Text Above Profile */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="text-center"
+            >
+              <motion.h2
+                className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-primary via-yellow-500 to-orange-500 bg-clip-text text-transparent font-serif"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                  fontFamily: "'Playfair Display', 'Georgia', serif",
+                  letterSpacing: "0.02em",
+                  textShadow: "0 2px 20px rgba(255, 165, 0, 0.3)"
+                }}
+              >
+                Hey I'm Neelakanta
+              </motion.h2>
+              <motion.div
+                className="h-1 w-32 mx-auto mt-3 rounded-full bg-gradient-to-r from-primary via-yellow-500 to-orange-500"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              />
+            </motion.div>
+            <InteractiveProfileImage />
+          </div>
 
           {/* Right Side - Content - Animates from center to corner */}
           <motion.div 
